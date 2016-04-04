@@ -1,0 +1,9 @@
+c:\users\cesar\documents\visual studio 2015\Projects\Planner\Planner\bin\Debug\Planner.exe.config
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\bin\Debug\Planner.exe
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\bin\Debug\Planner.pdb
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.csprojResolveAssemblyReference.cache
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.Properties.Resources.resources
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.csproj.GenerateResource.Cache
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.exe
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.pdb
+C:\Users\Cesar\Documents\Visual Studio 2015\Projects\Planner\Planner\obj\Debug\Planner.Form1.resources
