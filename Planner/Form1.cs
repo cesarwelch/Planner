@@ -17,7 +17,7 @@ namespace Planner
         public Form1()
         {
             InitializeComponent();
-            do_some();
+
         }
 
         //logica de todo
@@ -25,17 +25,17 @@ namespace Planner
         private void do_some()
         {
             bool[,] aula_tiempo = new bool[9, 280];
-            
+
             for (int i = 0; i < 9; i++)//Rows
             {
                 for (int j = 0; j < 280; j++)//Columns
                 {
-                    aula_tiempo[i,j] = false;
+                    aula_tiempo[i, j] = false;
                     //Console.Write(" "+i+","+j+" ");
                 }
-              //  Console.WriteLine("\n");
+                //  Console.WriteLine("\n");
             }
-            
+
 
             //Clases Disponibles: 
             List<course> courses = new List<course>();
@@ -68,7 +68,7 @@ namespace Planner
                 {
 
                     //file reading
-                    Console.WriteLine(Environment.CurrentDirectory+"  hi");
+                    Console.WriteLine(Environment.CurrentDirectory + "  hi");
                     string[] lines = System.IO.File.ReadAllLines(Environment.CurrentDirectory + @"\maestro por codigo de clase.csv", Encoding.UTF8);
                     foreach (string line in lines)
                     {
@@ -153,7 +153,7 @@ namespace Planner
                                         courses.Last().hour = s;
                                         for (int au = 0; au < 280; au++)
                                         {
-                                            if (aula_tiempo[s, au]==false)
+                                            if (aula_tiempo[s, au] == false)
                                             {
                                                 aula_tiempo[s, au] = true;
                                                 courses.Last().nclass = au;
@@ -180,53 +180,69 @@ namespace Planner
             }
             int sa = 0;
             // maestro y clases
+            Console.WriteLine("El horario de clases junto con su maestro y aula");
+            textBox1.AppendText("El horario de clases junto con su maestro y aula \n");
             for (int i = 0; i < courses.Count; i++)
             {
                 sa += courses[i].students.Count;
-               Console.WriteLine(courses[i] );
+                Console.WriteLine(courses[i]);
+                textBox1.AppendText(courses[i].ToString() + "\n");
             }
             //prediccion
-            
-                         for (int i = 0; i < courses.Count; i++)
-                         {
-                             Console.Write(courses[i].id );
-                             sa += courses[i].students.Count;
-                             for (int j = 0; j < courses[i].students.Count; j++)
-                             {
-                                 Console.Write("," + courses[i].students[j]);
-                             }
-                Console.WriteLine();
+            Console.WriteLine("Prediccion por Curso");
+        
+            for (int i = 0; i < courses.Count; i++)
+            {
+                Console.Write(courses[i].id);
+                textBox2.AppendText(courses[i].id);
 
-                         }
+                sa += courses[i].students.Count;
+                for (int j = 0; j < courses[i].students.Count; j++)
+                {
+                    Console.Write("," + courses[i].students[j]);
+                    textBox2.AppendText("," + courses[i].students[j] );
+                }
+                Console.WriteLine();
+                textBox2.AppendText("\n");
+
+            }
 
 
             //satisfaccion
-            int satis=0;
-            decimal avg=0;
+            Console.WriteLine("Satisfaccion Promedio de alumno matriculado");
+            decimal avg = 0;
             decimal stu = 0;
             for (int i = 0; i < students.Count; i++)
             {
                 int calc = 0;
                 calc = (students[i].getbusymax() - students[i].getbusymin());
-                if (calc<0)
+                if (calc < 0)
                 {
-                    satis = 0;
-                   // avg += 0;
-               //     Console.WriteLine(students[i].id + ",N/A");
 
-                }else {
-                    decimal calc2 = ((decimal)students[i].busy.Count() / (decimal)students[i].arrcourses.Count())*3m;
-                    decimal calc3 = ((decimal)students[i].getbusymax() - (decimal)students[i].getbusymin())/8m*2m;
-                    decimal calc4 = ((decimal)calc2 + (decimal)calc3);
-                      Console.WriteLine(students[i].id + "," +calc4);
+                    // avg += 0;
+                    //     Console.WriteLine(students[i].id + ",N/A");
+
+                }
+                else {
+                    decimal calc2 = ((decimal)students[i].busy.Count() / (decimal)students[i].courses.Count()) * 3m;
+                    int calc3 = (students[i].getbusymax() - students[i].getbusymin());
+                    decimal count = 2;
+                    for (int k = 0; k < calc3; k++)
+                    {
+                        count -= 0.22m;
+                    }
+                    // Console.WriteLine(students[i].id + "," + ((decimal)students[i].busy.Count() / (decimal)students[i].arrcourses.Count()) * 3m + " " + ((decimal)students[i].getbusymax() - (decimal)students[i].getbusymin()) * 0.25m);
+                    decimal calc4 = count + calc2;
                     stu++;
                     avg += calc4;
                 }
-                
-                
+
+
                 calc = 0;
             }
-            Console.WriteLine(avg);
+            decimal labelsix = avg / stu;
+            label6.Text = (labelsix.ToString());
+            Console.WriteLine(avg / stu);
         }
         //            List<student> students = new List<student>();
         //            List<teacher> teachers = new List<teacher>();
@@ -236,8 +252,17 @@ namespace Planner
 
         private void button1_Click(object sender, EventArgs e)
         {
+            do_some();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
